@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
     <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
     <link rel="stylesheet" href="/styles/header.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/new-tweet.css" type="text/css" />
 
     <!-- External JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -48,16 +49,19 @@
 
     <!-- Page-specific (main) content here -->
     <main class="container">
-      <h1>Topic 1</h1>
-      <p>Busey ipsum dolor sit amet. When you get lost in your imaginatory vagueness, your foresight will become a nimble vagrant.The best way to communicate is compatible. Compatible communication is listening with open ears and an open mind, and not being fearful or judgemental about what you're hearing.</p>
-
-      <h2>Topic 2</h2>
-      <p>Have you urinated? Have you drained your bladder? Are you free? Because if you haven't it will only come out later. I'm giving you some information that your bodily fluids may penetrate your clothing fibre's without warning.I would like to give you a backstage pass to my imagination.</p>
-      <h2>Topic 2</h2>
-      <p>Have you urinated? Have you drained your bladder? Are you free? Because if you haven't it will only come out later. I'm giving you some information that your bodily fluids may penetrate your clothing fibre's without warning.I would like to give you a backstage pass to my imagination.</p>
-      <h2>Topic 2</h2>
-      <p>Have you urinated? Have you drained your bladder? Are you free? Because if you haven't it will only come out later. I'm giving you some information that your bodily fluids may penetrate your clothing fibre's without warning.I would like to give you a backstage pass to my imagination.</p>
-
+      <section class="new-tweet">
+        <!--<h2>Compose Tweet</h2>-->
+        <form method="POST" action="/tweets/">
+          <div id="tweetArea">
+            <label for="tweetText">What are you humming about?</label>
+            <textarea name="text" id="tweet-text" rows="1"></textarea>
+          </div>
+          <footer id="tweetcount">
+            <button type="submit" id="tweet_button">Tweet</button>
+            <output name="counter" class="counter" for="tweet-text">140</output>
+          </footer>
+        </form>
+      </section>
     </main>
 
   </body>
