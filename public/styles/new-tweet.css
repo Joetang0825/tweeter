@@ -1,12 +1,14 @@
 .new-tweet {
-  width: 100%
+  width: 100%;
+  padding-bottom: 20px;
 }
 
 #tweetArea {
   padding-top: 5px;
   display: flex;
   flex-direction: column;
-  font-size: 15px;
+  font-size: 18px;
+  font-weight: bold;
 }
 
 #tweet-text {
@@ -16,10 +18,11 @@
   border-left: none;
   border-right: none;
   outline: none;
+  color: #545454;
 }
 
 #tweetcount {
-  padding-top: 5px;
+  padding-top: 10px;
   display: flex;
   justify-content: space-between;
   font-family: 'Bungee', sans-serif;

@@ -1,5 +1,4 @@
 // Count number of characters
-
 $(document).ready(function () {
   let count = 140;
 
