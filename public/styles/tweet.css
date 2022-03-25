@@ -5,6 +5,12 @@
   border-radius: 50%;
 }
 
+
+#tweets-container {
+  width: 100%;
+  padding-top: 20px;
+}
+
 .tweetContainer {
   padding-top: 10px;
   padding-left: 10px;
