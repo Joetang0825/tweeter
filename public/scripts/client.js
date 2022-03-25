@@ -80,6 +80,7 @@ $(document).ready(function () {
 
     // clear the content in textbox
     $(this).find('#tweet-text').val('');
+    $(this).find('.counter').val(140);
 
   });
 

@@ -51,6 +51,7 @@
   font-size: 18px;  
   font-weight: bold;
   border-bottom: 3px solid;
+  word-wrap: break-word;
 }
 
 .tweetFooter {
