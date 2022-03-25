@@ -70,10 +70,48 @@ $(document).ready(function () {
 
   renderTweets(data);
 
-  $("#tweet_button").submit((event) => {
 
+  $("form").submit(function (event) {
     event.preventDefault();
+    let text = ($(this).serialize());
+
+    const configPOST = {
+      url: `/tweets/`,
+      method: "POST",
+      data: text,
+
+      success: (data) => {
+        console.log('success')
+      },
+
+      error: (error) => {
+        console.log("err", error);
+      },
+    };
+
+    $.ajax(configPOST);
+
   });
+
+  const loadtweets = function () {
+    const configGET = {
+      url: `/tweets/`,
+      method: "GET",
+
+      success: (data) => {
+        renderTweets(data);
+      },
+
+      error: (error) => {
+        console.log("err", error);
+      },
+    };
+
+    $.ajax(configGET);
+
+  }
+
+  loadtweets();
 
 });
 
