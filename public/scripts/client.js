@@ -4,10 +4,12 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
-
-
+// Execute client side Javascript once DOM is ready
 $(document).ready(function () {
+
+  // Create HTML section of a tweet
   const createTweetElement = function (tweet) {
+    // Use timeago to display when the tweet was created
     time = timeago.format(tweet.created_at);
 
     let $tweet =
@@ -37,10 +39,13 @@ $(document).ready(function () {
     return $tweet;
   }
 
+  // Render all tweets
   const renderTweets = function (tweets) {
     const $tweetsContainer = $("#tweets-container");
+
     $tweetsContainer.empty();
 
+    // Display tweets in descending order
     for (let i = tweets.length - 1; i >= 0; i--) {
       $tweetsContainer.append(createTweetElement(tweets[i]));
     }
@@ -54,11 +59,15 @@ $(document).ready(function () {
     return div.innerHTML;
   };
 
-
+  // Create an event listener for a submit event
   $("form").submit(function (event) {
-    event.preventDefault();
-    let text = escape($(this).serialize());
 
+    // Prevent the default behaviour of the submit event (e.g. data submission and page refresh)
+    event.preventDefault();
+    // Serialize the form data and send it to the server as a query string
+    let text = $(this).serialize();
+
+    // Configuration for AJAX POST request
     const configPOST = {
       url: `/tweets/`,
       method: "POST",
@@ -73,18 +82,21 @@ $(document).ready(function () {
       },
     };
 
-    // Extract user input and replace '%20' (user input space) to ' ' to calculate right # of characters
+    // Extract user input and replace '%20' (user entered space) to ' ' to calculate right # of characters
+
+    // Remove the 'text=' portion
     let content = text.slice(5);
     content = content.replaceAll('%20', ' ');
-    console.log('text ' + content);
-    console.log('text length: ' + content.length);
 
-
+    // Display validation error message if user's input is empty
+    // Clear all other validation error message if they are displayed
     if (!content) {
       $(this).parent().parent().find('#error2').slideDown("slow");
       $(this).parent().parent().find('#error1').css("display", "none");
       return;
     }
+    // Display validation error message if user's input is longer than 140 characters
+    // Clear all other validation error message if they are displayed
     else if (content.length > 140) {
       //$(this).parent().parent().find('#error1').css("display", "block");
       $(this).parent().parent().find('#error1').slideDown("slow");
@@ -94,7 +106,7 @@ $(document).ready(function () {
 
     $.ajax(configPOST);
 
-    // clear the content in textbox
+    // clear the content in textbox and reset the character counter to 140
     $(this).find('#tweet-text').val('');
     $(this).find('.counter').val(140);
 
@@ -104,7 +116,9 @@ $(document).ready(function () {
 
   });
 
+  // Load tweets by creating a AJAX GET request
   const loadtweets = function () {
+
     const configGET = {
       url: `/tweets/`,
       method: "GET",

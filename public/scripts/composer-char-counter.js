@@ -1,4 +1,4 @@
-// Count number of characters
+// Count number of characters user entered
 $(document).ready(function () {
   let count = 140;
 
@@ -11,10 +11,11 @@ $(document).ready(function () {
     if (charCount > 140) {
       charCount = 140 - charCount;
 
-      // Navigate the DOM to find the .counter element to update is more efficient performance wise compared to use $('.counter') directly
+      // Navigate the DOM to find the .counter element
+      // This update is more efficient performance wise compared to use $('.counter') directly
       $(this).parent().parent().find('.counter').css("color", "red");
     }
-    // If the counter >=0  and counter <= 140, update the font color to black
+    // If 0 <= counter <= 140, update the font color to black
     else {
       $(this).parent().parent().find('.counter').css("color", "black");
     }
