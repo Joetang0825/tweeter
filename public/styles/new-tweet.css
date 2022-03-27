@@ -35,3 +35,22 @@
   font-size: 15px;
 }
 
+#error1 {
+  padding: 10px 10px 10px 10px;
+  color: red;
+  font-size: 16px;
+  border-color: red;
+  border: 3px solid;
+  display: none;
+}
+
+#error2 {
+  padding: 10px 10px 10px 10px;
+  color: red;
+  font-size: 16px;
+  border-color: red;
+  border: 3px solid;
+  visibility: hi;
+  display: none;
+}
+

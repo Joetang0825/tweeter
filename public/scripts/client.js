@@ -9,6 +9,7 @@
 $(document).ready(function () {
   const createTweetElement = function (tweet) {
     time = timeago.format(tweet.created_at);
+
     let $tweet =
       `<article class="tweetContainer">
           <header class="tweetHeader">
@@ -19,7 +20,7 @@ $(document).ready(function () {
             <span class="userName">${tweet.user.handle}</span>  
           </header>
           <div class="tweetContent">
-            <span>${tweet.content.text}</span>
+            <span>${escape(tweet.content.text)}</span>
           </div>
           <footer class="tweetFooter">
             <span>${time}</span>
@@ -36,7 +37,6 @@ $(document).ready(function () {
     return $tweet;
   }
 
-
   const renderTweets = function (tweets) {
     const $tweetsContainer = $("#tweets-container");
     $tweetsContainer.empty();
@@ -47,10 +47,17 @@ $(document).ready(function () {
 
   }
 
+  // Escape user input to avoid cross-site script like <script>alert('hihi')</script>
+  const escape = function (str) {
+    let div = document.createElement("div");
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
+  };
+
 
   $("form").submit(function (event) {
     event.preventDefault();
-    let text = ($(this).serialize());
+    let text = escape($(this).serialize());
 
     const configPOST = {
       url: `/tweets/`,
@@ -66,13 +73,22 @@ $(document).ready(function () {
       },
     };
 
-    const content = text.slice(5);
+    // Extract user input and replace '%20' (user input space) to ' ' to calculate right # of characters
+    let content = text.slice(5);
+    content = content.replaceAll('%20', ' ');
+    console.log('text ' + content);
+    console.log('text length: ' + content.length);
+
+
     if (!content) {
-      alert("Tweet is empty");
+      $(this).parent().parent().find('#error2').slideDown("slow");
+      $(this).parent().parent().find('#error1').css("display", "none");
       return;
     }
     else if (content.length > 140) {
-      alert("Tweet is too long");
+      //$(this).parent().parent().find('#error1').css("display", "block");
+      $(this).parent().parent().find('#error1').slideDown("slow");
+      $(this).parent().parent().find('#error2').css("display", "none");
       return;
     }
 
@@ -81,6 +97,10 @@ $(document).ready(function () {
     // clear the content in textbox
     $(this).find('#tweet-text').val('');
     $(this).find('.counter').val(140);
+
+    // Hide the error messages if there's no more validation errors
+    $(this).parent().parent().find('#error1').css("display", "none");
+    $(this).parent().parent().find('#error2').css("display", "none");
 
   });
 
