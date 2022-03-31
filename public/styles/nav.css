@@ -1,21 +1,45 @@
-
 /* Navigation section */
-nav {
-  height: 120px;
-  background-color: #4056A1;
-  color: #FFFFFF;
-  padding-right: 1.5em;
-  padding-left: 1.5em;
-  padding-top: 1.5em;
-  display: flex;
-  justify-content: space-between;
-  font-family: 'Bungee', sans-serif;
-  position: relative;
-  font-size: 30px;
-  position: fixed;
-  top: 0;
-  width: 100%;
+@media only screen and (min-width: 1024px) {
+  nav {
+    height: 120px;
+    background-color: #4056A1;
+    color: #FFFFFF;
+    padding-right: 1.5em;
+    padding-left: 1.5em;
+    padding-top: 1.5em;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Bungee', sans-serif;
+    position: relative;
+    font-size: 30px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
 }
+
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  nav {
+    height: 120px;
+    background-color: #bf6300;
+    color: #FFFFFF;
+    padding-right: 1.5em;
+    padding-left: 1.5em;
+    padding-top: 1.5em;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Bungee', sans-serif;
+    position: relative;
+    font-size: 30px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-image: url("../images/background.png");
+  }
+}
+
+
 
 /* 'Write a new tweet' label */
 .writeTweet {
