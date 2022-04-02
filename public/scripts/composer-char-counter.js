@@ -4,12 +4,10 @@ $(document).ready(function () {
 
   // Event handler to the textarea element 
   $("#tweet-text").on('input', function () {
-    let charCount = 0;
-    charCount = $(this).val().length;
+    charCount = 140 - $(this).val().length;
 
     // If the counter > 140, set the number to negative and change the font color to red
-    if (charCount > 140) {
-      charCount = 140 - charCount;
+    if ($(this).val().length > 140) {
 
       // Navigate the DOM to find the .counter element
       // This update is more efficient performance wise compared to use $('.counter') directly
@@ -25,4 +23,3 @@ $(document).ready(function () {
 
   });
 });
-
